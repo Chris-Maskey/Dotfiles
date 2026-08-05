@@ -1,0 +1,85 @@
+# New panes and tabs inherit the active pane's working directory.
+[terminal]
+new_cwd = "follow"
+shell_mode = "auto"
+
+# Closest built-in replacement for tmux-tokyo-night.
+[theme]
+name = "rose-pine"
+auto_switch = true
+
+[ui]
+mouse_capture = true
+copy_on_select = true
+
+show_agent_labels_on_pane_borders = true
+agent_panel_sort = "priority"
+
+[keys]
+# Equivalent to:
+# set -g prefix C-a
+prefix = "ctrl+a"
+
+# Splits:
+# Prefix + | → split right
+# Prefix + - → split down
+split_vertical = "prefix+|"
+split_horizontal = "prefix+minus"
+
+# Reload config with Prefix + r.
+reload_config = "prefix+r"
+
+# Prefix + m toggles pane zoom.
+zoom = "prefix+m"
+
+# Disable bindings that conflict with the custom resize commands below.
+focus_pane_left = ""
+focus_pane_down = ""
+focus_pane_up = ""
+focus_pane_right = ""
+resize_mode = ""
+
+# Keep useful standard bindings explicit.
+copy_mode = "prefix+["
+close_pane = "prefix+x"
+detach = "prefix+q"
+
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "willfish.herdr-navigator.left"
+description = "navigate left"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "willfish.herdr-navigator.down"
+description = "navigate down"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "willfish.herdr-navigator.up"
+description = "navigate up"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "willfish.herdr-navigator.right"
+description = "navigate right"
+
+[[keys.command]]              # open in a split beside your work
+key = "prefix+f"
+type = "shell"
+command = "herdr plugin action invoke open-file-viewer --plugin herdr-file-viewer"
+
+[[keys.command]]              # …or in its own tab
+key = "prefix+shift+f"
+type = "shell"
+command = "herdr plugin action invoke open-file-viewer-tab --plugin herdr-file-viewer"
+
+[ui.toast]
+delivery = "system"
+
+[experimental]
+pane_history = true
